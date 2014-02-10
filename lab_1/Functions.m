@@ -141,7 +141,85 @@ classdef Functions
                 end
             end
             
-        end
+         end
+         
+         %sorting function from Mathworks
+         function [smallestNElements smallestNIdx] = getNElements(A, n)
+             [ASorted AIdx] = sort(A);
+             smallestNElements = ASorted(1:n);
+             smallestNIdx = AIdx(1:n);
+            end
+        
+         function EucledianDistance = EucledeanDistance2(X,Y,r1)
+             EucledianDistance = sqrt((X - r1(:,1)).^2+(Y - r1(:,2)).^2);
+         end
+         
+         function KNN_Boundary = KNNBoundary2(X,Y,r1,r2,K)
+             if ~exist('K', 'var') || isempty(K)
+                K = 1;
+            end
+             KNN_Boundary = zeros(size(X));
+             EucDist1 = 50;
+             EucDist2 = 50;
+             
+             [h,w] = size(KNN_Boundary);
+             
+             for i = 1:w
+                for j = 1:h
+
+                        temp1 = Functions.EucledeanDistance2(X(1,i),Y(j,1),r1);
+                        EucDist1 = Functions.getNElements(temp1,K);
+
+                        temp2 = Functions.EucledeanDistance2(X(1,i),Y(j,1),r2);
+                        EucDist2 = Functions.getNElements(temp2,K);
+
+                    %if K == 1
+                        class1_mean = mean(EucDist1);
+                        class2_mean = mean(EucDist2);
+                        KNN_Boundary(j,i) = Functions.GetSmallestValue2(class1_mean,class2_mean);
+                        EucDist1 = 50;
+                        EucDist2 = 50;
+                    %end
+                    
+                    
+                end
+             end
+         end
+         
+         function KNN_Boundary = KNNBoundary3(X,Y,r1,r2,r3,K)
+             if ~exist('K', 'var') || isempty(K)
+                K = 1;
+            end
+             KNN_Boundary = zeros(size(X));
+             EucDist1 = 50;
+             EucDist2 = 50;
+             EucDist3 = 50;
+             
+             [h,w] = size(KNN_Boundary);
+             
+             for i = 1:w
+                for j = 1:h
+
+                        temp1 = Functions.EucledeanDistance2(X(1,i),Y(j,1),r1);
+                        EucDist1 = Functions.getNElements(temp1,K);
+
+                        temp2 = Functions.EucledeanDistance2(X(1,i),Y(j,1),r2);
+                        EucDist2 = Functions.getNElements(temp2,K);
+                        
+                        temp3 = Functions.EucledeanDistance2(X(1,i),Y(j,1),r3);
+                        EucDist3 = Functions.getNElements(temp3,Ka);
+
+                        class1_mean = mean(EucDist1);
+                        class2_mean = mean(EucDist2);
+                        class3_mean = mean(EucDist3);
+                        KNN_Boundary(j,i) = Functions.GetSmallestValue3(class1_mean,class2_mean,class3_mean);
+                        EucDist1 = 50;
+                        EucDist2 = 50;
+                        EucDist3 = 50;                    
+                    
+                end
+             end
+         end
         
         
         
