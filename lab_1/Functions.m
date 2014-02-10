@@ -207,7 +207,7 @@ classdef Functions
                         EucDist2 = Functions.getNElements(temp2,K);
                         
                         temp3 = Functions.EucledeanDistance2(X(1,i),Y(j,1),r3);
-                        EucDist3 = Functions.getNElements(temp3,Ka);
+                        EucDist3 = Functions.getNElements(temp3,K);
 
                         class1_mean = mean(EucDist1);
                         class2_mean = mean(EucDist2);

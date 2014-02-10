@@ -31,9 +31,9 @@ NN_BoundaryCase1 = Functions.KNNBoundary2(X1,Y1,rA,rB,1);
 k5NN_BoundaryCase1 = Functions.KNNBoundary2(X1,Y1,rA,rB,5);
 
 %Case 2 Training Data
-NC = 10;
-ND = 20;
-NE = 15;
+NC = 100;
+ND = 200;
+NE = 150;
 class_C = featureclass([5 10]',[8 4;4 40],NC/(NC+ND+NE));
 class_D = featureclass([15 10]',[8 0;0 8],ND/(NC+ND+NE));
 class_E = featureclass([10 5]',[10 -5;-5 20],NE/(NC+ND+NE));
@@ -70,9 +70,13 @@ tE = Functions.GenerateDist(class_E,NE);
  hold on;
  xlabel('feature1');
  ylabel('feature2');
- contour(xDim1,yDim1,MED_BoundaryCase1,1);
- contour(xDim1,yDim1,GED_BoundaryCase1,1);
- contour(xDim1,yDim1,MAP_BoundaryCase1,1);
+ title('MED,GED and MAP Plots for Case 1');
+ [C6,h6]=contour(xDim1,yDim1,MED_BoundaryCase1,1);
+ set(h6,'EdgeColor','c');
+ [C7,h7]=contour(xDim1,yDim1,GED_BoundaryCase1,1);
+ set(h7,'EdgeColor','m');
+ [C10,h10]=contour(xDim1,yDim1,MAP_BoundaryCase1,1);
+ set(h10,'EdgeColor','c');
  subplot(1,2,2)
  plot(rA(:,1),rA(:,2),'b.');
  hold on;
@@ -84,9 +88,12 @@ tE = Functions.GenerateDist(class_E,NE);
  hold on;
  xlabel('feature1');
  ylabel('feature2');
- contour(xDim1,yDim1,NN_BoundaryCase1,1);
+ title('NN and KNN Plots for Case 1');
+ [C8,h8]=contour(xDim1,yDim1,NN_BoundaryCase1,1);
+ set(h8,'EdgeColor','c');
  hold on;
- contour(xDim1,yDim1,k5NN_BoundaryCase1,1);
+ [C9,h9]=contour(xDim1,yDim1,k5NN_BoundaryCase1,10);
+ set(h9,'EdgeColor','m');
  
  figure
  subplot(1,2,1)
@@ -105,9 +112,12 @@ tE = Functions.GenerateDist(class_E,NE);
  xlabel('feature1');
  ylabel('feature2');
  title('MED, GED, MAP Plots for Case 2')
- contour(xDim2,yDim2,MED_BoundaryCase2,2);
- contour(xDim2,yDim2,GED_BoundaryCase2,2);
- contour(xDim2,yDim2,MAP_BoundaryCase2,2);
+ [C3,h3]=contour(xDim2,yDim2,MED_BoundaryCase2,2);
+ set(h3,'EdgeColor','c');
+ [C4,h4]=contour(xDim2,yDim2,GED_BoundaryCase2,2);
+ set(h4,'EdgeColor','m');
+ [C5,h5]=contour(xDim2,yDim2,MAP_BoundaryCase2,2);
+ set(h5,'EdgeColor','k');
  subplot(1,2,2)
  plot(rC(:,1),rC(:,2),'b.');
  hold on;
@@ -124,10 +134,8 @@ tE = Functions.GenerateDist(class_E,NE);
  xlabel('feature1');
  ylabel('feature2');
  title('NN and KNN Plots for Case 2')
- contour(xDim2,yDim2,NN_BoundaryCase2,2);
+ [C1,h1] = contour(xDim2,yDim2,NN_BoundaryCase2,2);
+ set(h1,'EdgeColor','c');
  hold on;
- contour(xDim2,yDim2,k5NN_BoundaryCase2,2);
- 
-
- 
-
+ [C2,h2] = contour(xDim2,yDim2,k5NN_BoundaryCase2,2);
+ set(h2,'EdgeColor','m');
