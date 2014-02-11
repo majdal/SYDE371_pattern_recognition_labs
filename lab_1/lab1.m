@@ -139,3 +139,10 @@ tE = Functions.GenerateDist(class_E,NE);
  hold on;
  [C2,h2] = contour(xDim2,yDim2,k5NN_BoundaryCase2,2);
  set(h2,'EdgeColor','m');
+ 
+ med_error = Functions.error('Functions.MEDBoundary2', rA, rB, class_A, class_B);
+ map_error = Functions.error('Functions.MAPBoundary2', rA, rB, class_A, class_B);
+ ged_error = Functions.error('Functions.GEDBoundary2', rA, rB, class_A, class_B);
+ nn_error = Functions.error('Functions.KNNBoundary2', tA, tB, rA, rB);
+ knn_error = Functions.error_knn('Functions.KNNBoundary2', tA, tB, rA, rB, 5);
+ 
