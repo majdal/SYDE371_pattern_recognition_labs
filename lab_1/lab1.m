@@ -146,3 +146,9 @@ tE = Functions.GenerateDist(class_E,NE);
  nn_error = Functions.error('Functions.KNNBoundary2', tA, tB, rA, rB);
  knn_error = Functions.error_knn('Functions.KNNBoundary2', tA, tB, rA, rB, 5);
  
+ med_error3 = Functions.error('Functions.MEDBoundary2', rC, rD, rE, class_C, class_D, class_E);
+ map_error3 = Functions.error('Functions.MAPBoundary2', rC, rD, rE, class_C, class_D, class_E);
+ ged_error3 = Functions.error('Functions.GEDBoundary2', rC, rD, rE, class_C, class_D, class_E);
+ nn_error3 = Functions.error('Functions.KNNBoundary2', tC, tD, rE, rC, rD, rE);
+ knn_error3 = Functions.error_knn('Functions.KNNBoundary2', tC, tD, rE, rC, rD, rE, 5);
+ 
