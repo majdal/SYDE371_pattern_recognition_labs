@@ -218,11 +218,30 @@ classdef Functions
                         EucDist3 = 50;                    
                     
                 end
-             end
-         end
+            end
+        end
         
-        
-        
-    
+        function error = error(classifier, distribution_1, distribution_2, class_A, class_B)
+            [x_1, y_1] = size(distribution_1);
+            [x_2, y_2] = size(distribution_2);
+
+            fn = str2func(classifier);
+            error_1 = fn(distribution_1(:,1), distribution_1(:,2), class_A, class_B);
+            error_2 = fn(distribution_2(:,1), distribution_2(:,2), class_A, class_B);
+            
+            true_positives_1 = sum(error_1(:)==0);
+            false_rejections_1 = x_1-true_positives_1;
+
+            true_positives_2 = sum(error_2(:)==1);
+            false_rejections_2 = x_2-true_positives_2;
+            
+            confusion = [true_positives_1    false_rejections_2;
+                         false_rejections_1  true_positives_2
+            ];
+            disp(false_rejections_1/x_1);
+            disp(false_rejections_2/x_2);
+            
+            error = confusion;
+        end
     end
 end
