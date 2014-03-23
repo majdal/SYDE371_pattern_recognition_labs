@@ -40,5 +40,14 @@ classdef l2functions
                          false_rejections_1  true_positives_2
             ];
         end
+        function confuscioussays = confusionMat1(MED_disc)
+            true_positives_1 = sum(MED_disc(1,:)>=1);
+            true_positives_2 = sum(MED_disc(2,:)<0);
+            false_rejections_2 = 200-true_positives_1;
+            false_rejections_1 = 200-true_positives_2;
+            confuscioussays = [true_positives_1    false_rejections_2;
+                         false_rejections_1  true_positives_2
+            ];
+        end
     end
 end

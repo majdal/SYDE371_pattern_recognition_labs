@@ -17,18 +17,18 @@ j = 1;
 
 %-----to be repeated until naB = nbA = 0, then reiterate to find new suitable
 %disc
-while ((naB > 0) && (nbA > 0))
+while naB ~= 0 && nbA ~= 0
 %randomly pick prototype
 protA = clA.Cluster(randi(length(clA.Cluster(:,1)),1),:);
 protB = clB.Cluster(randi(length(clB.Cluster(:,1)),1),:); 
 
 MED_discA = l2functions.MEDdiscriminant(protA, protB, clA, clB);
 
-error = l2functions.error(MED_discA);
+%error = l2functions.error(MED_discA);
 
-confMat= l2functions.confusionMat(error);
-naB = confMat(1,2);
-nbA = confMat(2,1);
+confMat= l2functions.confusionMat1(MED_discA);
+naB = confMat(1);
+nbA = confMat(2);
 end
 
 
