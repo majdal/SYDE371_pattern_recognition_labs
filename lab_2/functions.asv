@@ -1,0 +1,12 @@
+classdef functions
+    methods (Static)
+        function mean = calcMean(class)
+            mean = ((1/length(class.Cluster))*sum(class.Cluster));
+        end
+        
+        function MED_Discriminant = MEDdiscriminant(proto1, proto2, class)
+            MED_Discriminant = (proto1 - proto2)'*class + 0.5* ...
+                ;
+        end
+    end
+end
