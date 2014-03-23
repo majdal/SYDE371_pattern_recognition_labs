@@ -31,11 +31,6 @@ classdef l2functions
             plotstuff = scatter(class.Cluster(:,1), class.Cluster(:,2),'Fill');
         end
         
-<<<<<<< HEAD
-        function discCont = disc_contour(MED_Disc, class1, class2)
-            % xDim = ;
-        end 
-        
         % MED classifier stuff 
         function MEDDist = MEDDist(X,Y,class)
             MEDDist = sqrt((X - class.mu(1)).^2+(Y - class.mu(2)).^2);
@@ -60,7 +55,6 @@ classdef l2functions
                     MED_Boundary(j,i) = l2functions.GetSmallestValue(MEDDist1(j,i),MEDDist2(j,i));
                 end
             end
-=======
         function confuscioussays = confusionMat(error)
             true_positives_1 = sum(error(1,:)==1);
             true_positives_2 = sum(error(2,:)==0);
@@ -69,7 +63,6 @@ classdef l2functions
             confuscioussays = [true_positives_1    false_rejections_2;
                          false_rejections_1  true_positives_2
             ];
->>>>>>> 2f4a35b6d7b19977f6d783b258fb0a483424645a
         end
     end
 end
