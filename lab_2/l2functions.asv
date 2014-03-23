@@ -5,9 +5,17 @@ classdef l2functions
         end
         
         function MED_Discriminant = MEDdiscriminant(proto1, proto2, class1, class2)
+<<<<<<< HEAD
             MED_Discriminant(1,:) = (proto1 - proto2)*class1.Cluster' + 0.5* ...
                 (proto2*proto2' - proto1*proto1');
             MED_Discriminant(2,:) = (proto1 - proto2)*class2.Cluster' + 0.5* ...
+=======
+            x1 = class1.Cluster;
+            x2 = class2.Cluster;
+            MED_Discriminant(1,:) = (proto1 - proto2)*x1' + 0.5* ...
+                (proto2*proto2' - proto1*proto1');
+            MED_Discriminant(2,:) = (proto1 - proto2)*x2' + 0.5* ...
+>>>>>>> 2f4a35b6d7b19977f6d783b258fb0a483424645a
                 (proto2*proto2' - proto1*proto1');
         end
         
@@ -29,6 +37,7 @@ classdef l2functions
             plotstuff = scatter(class.Cluster(:,1), class.Cluster(:,2),'Fill');
         end
         
+<<<<<<< HEAD
         function discCont = disc_contour(MED_Disc, class1, class2)
             % xDim = ;
         end 
@@ -57,6 +66,25 @@ classdef l2functions
                     MED_Boundary(j,i) = l2functions.GetSmallestValue(MEDDist1(j,i),MEDDist2(j,i));
                 end
             end
+=======
+        function confuscioussays = confusionMat(error)
+            true_positives_1 = sum(error(1,:)==1);
+            true_positives_2 = sum(error(2,:)==0);
+            false_rejections_2 = 200-true_positives_1;
+            false_rejections_1 = 200-true_positives_2;
+            confuscioussays = [true_positives_1    false_rejections_2;
+                         false_rejections_1  true_positives_2
+            ];
+        end
+        function confuscioussays = confusionMat1(MED_disc)
+            true_positives_1 = sum(MED_disc(1,:)>=1);
+            true_positives_2 = sum(MED_disc(2,:)<0);
+            false_rejections_2 = 200-true_positives_1;
+            false_rejections_1 = 200-true_positives_2;
+            confuscioussays = [true_positives_1    false_rejections_2;
+                         false_rejections_1  true_positives_2
+            ];
+>>>>>>> 2f4a35b6d7b19977f6d783b258fb0a483424645a
         end
     end
 end
