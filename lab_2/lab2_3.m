@@ -75,6 +75,8 @@ while (remaining_A(:,1)> 0) && (remaining_B(:,1) > 0)
     
     remaining_A = size(clA.Cluster);
     remaining_B = size(clB.Cluster);
+    naB = 1;
+    nbA = 1;
     lol = 'new loop!'
 end 
 
