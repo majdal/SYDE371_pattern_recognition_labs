@@ -33,7 +33,7 @@ classdef l2functions
         
         % MED classifier stuff 
         function MEDDist = MEDDist(X,Y,class)
-            MEDDist = sqrt((X - class.mu(1)).^2+(Y - class.mu(2)).^2);
+            MEDDist = sqrt((X - class.prototype(1)).^2+(Y - class.prototype(2)).^2);
         end
         
         function  SV = GetSmallestValue(x,y)
@@ -44,7 +44,7 @@ classdef l2functions
             end    
         end
         
-        function MED_Boundary = MEDBoundary2(X, Y, class_1, class_2)
+        function MED_Boundary = MEDBoundary(X, Y, class_1, class_2)
             MED_Boundary = zeros(size(X));
             MEDDist1 = l2functions.MEDDist(X,Y,class_1);
             MEDDist2 = l2functions.MEDDist(X,Y,class_2);
@@ -55,6 +55,7 @@ classdef l2functions
                     MED_Boundary(j,i) = l2functions.GetSmallestValue(MEDDist1(j,i),MEDDist2(j,i));
                 end
             end
+        end 
         function confuscioussays = confusionMat(error)
             true_positives_1 = sum(error(1,:)==1);
             true_positives_2 = sum(error(2,:)==0);
@@ -64,5 +65,6 @@ classdef l2functions
                          false_rejections_1  true_positives_2
             ];
         end
+
     end
 end

@@ -55,7 +55,6 @@ while (remaining_A(:,1)> 0) && (remaining_B(:,1) > 0)
                 indicies(end+1)=i;
             end
         end 
-        indicies
         clB.Cluster(indicies,:) = [];
     end 
     
@@ -69,13 +68,12 @@ while (remaining_A(:,1)> 0) && (remaining_B(:,1) > 0)
                 indicies(end+1)=i;
             end
         end
-        indicies
         clB.Cluster(indicies,:) = [];
     end 
     
     remaining_A = size(clA.Cluster);
     remaining_B = size(clB.Cluster);
-    lol = 'new loop!'
+    print 'new loop!'
 end 
 
 figure

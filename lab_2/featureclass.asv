@@ -5,7 +5,7 @@ classdef featureclass
         cov
         Colour
         Cluster
-        prototype
+        
     end
     methods
         function obj = featureclass(data_point, colour)
