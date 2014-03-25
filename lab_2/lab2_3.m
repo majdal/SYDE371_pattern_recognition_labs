@@ -15,12 +15,14 @@ clB = featureclass(b, 'b');
 naB = 1;
 nbA = 1;
 j = 1;
-
+figure
+hold on;
 remaining_A = size(clA.Cluster);
 remaining_B = size(clB.Cluster);
+count = 1;
 %-----to be repeated until naB = nbA = 0, then reiterate to find new suitable
 %disc
-while (remaining_A(:,1)> 0) && (remaining_B(:,1) > 0)
+while (remaining_A(:,1)> 0) && (remaining_B(:,1) > 0) && count < 6
     while ((naB > 0) && (nbA > 0))
         %randomly pick prototype
         protA = clA.Cluster(randi(length(clA.Cluster(:,1)),1),:);
@@ -71,13 +73,13 @@ while (remaining_A(:,1)> 0) && (remaining_B(:,1) > 0)
     lol = 'new loop!'
     naB = 1;
     nbA = 1;
+    count = count + 1;
+    contour(xDim, yDim, MED_boundary, 1)
 end 
-
-figure
-l2functions.plotdata(clA); 
+hold on;
+l2functions.plotdata(a); 
 hold on; 
-l2functions.plotdata(clB);
-contour(xDim, yDim, MED_boundary, 1)
+l2functions.plotdata(b);
 
 
 

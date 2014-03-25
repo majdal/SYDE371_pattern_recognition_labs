@@ -21,8 +21,8 @@ classdef l2functions
             end
         end
         
-        function plotstuff = plotdata(class)
-            plotstuff = scatter(class.Cluster(:,1), class.Cluster(:,2),'Fill');
+        function plotstuff = plotdata(data)
+            plotstuff = scatter(data(:,1), data(:,2),'Fill');
         end
         
         % MED classifier stuff 
