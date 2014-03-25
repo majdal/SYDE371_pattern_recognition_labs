@@ -22,7 +22,7 @@ remaining_B = size(clB.Cluster);
 count = 1;
 %-----to be repeated until naB = nbA = 0, then reiterate to find new suitable
 %disc
-while (remaining_A(:,1)> 0) && (remaining_B(:,1) > 0) && count < 6
+while (remaining_A(:,1)> 0) && (remaining_B(:,1) > 0)
     while ((naB > 0) && (nbA > 0))
         %randomly pick prototype
         protA = clA.Cluster(randi(length(clA.Cluster(:,1)),1),:);
