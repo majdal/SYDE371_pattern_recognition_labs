@@ -1,15 +1,9 @@
 classdef l2functions
     methods (Static)
-        function mean = calcMean(class)
-            mean = ((1/length(class.Cluster))*sum(class.Cluster));
-        end
         
-        function MED_Discriminant = MEDdiscriminant(proto1, proto2, class1, class2)
-            x1 = class1.Cluster;
-            x2 = class2.Cluster;
-            MED_Discriminant(1,:) = (proto1 - proto2)*x1' + 0.5* ...
-                (proto2*proto2' - proto1*proto1');
-            MED_Discriminant(2,:) = (proto1 - proto2)*x2' + 0.5* ...
+        function MED_Discriminant = MEDdiscriminant(proto1, proto2, class)
+            x1 = class.Cluster;
+            MED_Discriminant = (proto1 - proto2)*x1' + 0.5* ...
                 (proto2*proto2' - proto1*proto1');
         end
         
@@ -56,9 +50,9 @@ classdef l2functions
                 end
             end
         end 
-        function confuscioussays = confusionMat(error)
-            true_positives_1 = sum(error(1,:) >= 1);
-            true_positives_2 = sum(error(2,:) < 0);
+        function confuscioussays = confusionMat(disc1, disc2)
+            true_positives_1 = sum(disc1(:) >= 0);
+            true_positives_2 = sum(disc2(:) < 0);
             false_rejections_2 = 200-true_positives_1;
             false_rejections_1 = 200-true_positives_2;
             confuscioussays = [true_positives_1    false_rejections_2;

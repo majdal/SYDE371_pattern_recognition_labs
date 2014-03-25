@@ -12,10 +12,6 @@ yDim = 0:1:450;
 clA = featureclass(a, 'r');
 clB = featureclass(b, 'b');
 
-%calculate mean of data set points for MED
-clA.mu = l2functions.calcMean(clA);
-clB.mu = l2functions.calcMean(clB);
-
 naB = 1;
 nbA = 1;
 j = 1;
@@ -33,11 +29,14 @@ while (remaining_A(:,1)> 0) && (remaining_B(:,1) > 0)
         clA.prototype = protA;
         clB.prototype = protB;
 
-        MED_disc = l2functions.MEDdiscriminant(protA, protB, clA, clB);
+        MED_discA = l2functions.MEDdiscriminant(clA.prototype, clB.prototype, clA);
+        MED_discB = l2functions.MEDdiscriminant(clA.prototype, clB.prototype, clB);
 
-        confMat= l2functions.confusionMat(MED_disc);
+        confMat= l2functions.confusionMat(MED_discA, MED_discB);
         naB = confMat(1,2);
         nbA = confMat(2,1);
+        disp(naB)
+        disp(nbA)
     end
 
     % fill the meshgrid with the boundary info
@@ -46,30 +45,32 @@ while (remaining_A(:,1)> 0) && (remaining_B(:,1) > 0)
     % if naB=0, then remove those points from b that G classifies as B
     if naB == 0
         indicies = [];
-        for i = 1:length(MED_disc)
-            if MED_disc(2,i) >= 0
+        for i = 1:length(MED_discB)
+            if MED_discB(i) < 0
                 indicies(end+1)=i;
             end
         end 
-        indicies
+        size(indicies)
         clB.Cluster(indicies,:) = [];
     end 
     
     % if nbA=0, then remove those points from a that G classifies as A
     if nbA == 0
         indicies=[];
-        for i = 1:length(MED_disc)
-            if MED_disc(1,i) < 1
+        for i = 1:length(MED_discA)
+            if MED_discA(i) >= 0
                 indicies(end+1)=i;
             end
         end
-        indicies
+        size(indicies)
         clB.Cluster(indicies,:) = [];
     end 
     
-    remaining_A = size(clA.Cluster);
-    remaining_B = size(clB.Cluster);
+    remaining_A = length(clA.Cluster);
+    remaining_B = length(clB.Cluster);
     lol = 'new loop!'
+    naB = 1;
+    nbA = 1;
 end 
 
 figure
