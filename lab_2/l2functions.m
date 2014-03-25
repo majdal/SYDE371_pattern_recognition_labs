@@ -57,8 +57,8 @@ classdef l2functions
             end
         end 
         function confuscioussays = confusionMat(error)
-            true_positives_1 = sum(error(1,:)==1);
-            true_positives_2 = sum(error(2,:)==0);
+            true_positives_1 = sum(error(1,:) >= 1);
+            true_positives_2 = sum(error(2,:) < 0);
             false_rejections_2 = 200-true_positives_1;
             false_rejections_1 = 200-true_positives_2;
             confuscioussays = [true_positives_1    false_rejections_2;
